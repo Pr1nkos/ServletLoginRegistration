@@ -13,44 +13,17 @@ import java.util.UUID;
 /**
  * The type Product dao.
  */
-@RequiredArgsConstructor
-public class ProductDAO {
 
-    private final ObjectMapper mapper;
-    private final File file;
+public class ProductDAO extends BaseDAO<Product, UUID> {
 
-    /**
-     * Save.
-     *
-     * @param product the product
-     * @throws IOException the io exception
-     */
-    public void save(Product product) throws IOException {
-        List<Product> products = getAllProducts();
-        products.add(product);
-        mapper.writeValue(file, products);
-    }
+    public ProductDAO(ObjectMapper mapper, File file) {
+        super(mapper, file, new TypeReference<>() {
 
-    /**
-     * Gets all products.
-     *
-     * @return the all products
-     * @throws IOException the io exception
-     */
-    public List<Product> getAllProducts() throws IOException {
-        return mapper.readValue(file, new TypeReference<>() {
         });
     }
 
-    /**
-     * Delete product by id.
-     *
-     * @param uuid the uuid
-     * @throws IOException the io exception
-     */
-    public void deleteProductById(UUID uuid) throws IOException {
-        List<Product> products = getAllProducts();
-        products.removeIf(product -> product.getUuid().equals(uuid));
-        mapper.writeValue(file, products);
+    @Override
+    protected UUID getId(Product product){
+        return product.getUuid();
     }
 }

@@ -33,7 +33,7 @@ public class ProductService {
      * @throws IOException the io exception
      */
     public List<Product> getAllProducts() throws IOException {
-        return productDAO.getAllProducts();
+        return productDAO.findAll();
     }
 
     /**
@@ -43,6 +43,6 @@ public class ProductService {
      * @throws IOException the io exception
      */
     public void deleteProduct(UUID productUUID) throws IOException {
-        productDAO.deleteProductById(productUUID);
+        productDAO.delete(productUUID);
     }
 }

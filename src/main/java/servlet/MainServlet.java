@@ -11,6 +11,8 @@ import java.io.IOException;
 /**
  * The type Main servlet.
  */
+//TODO Сделать вместо джексона - базу данных и всю логику перенести туда
+//TODO Перенести на Spring Boot, и на докер, и Ci CD
 @WebServlet(urlPatterns = "/")
 public class MainServlet extends HttpServlet {
 

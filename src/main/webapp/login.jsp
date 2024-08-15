@@ -1,13 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 09.08.2024
-  Time: 11:48
-  Template for JSP pages.
-  You can modify this template using File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setLocale value="${sessionScope.language}" />
+<fmt:setBundle basename="locale" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,25 +15,36 @@
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h2 class="mb-4">Login</h2>
+    <h2 class="mb-4"><fmt:message key="login_heading"/></h2>
 
     <!-- Main content -->
     <div id="content" class="card p-4 shadow">
+        <form action="language" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="languageSelect"><fmt:message key="language_label"/></label>
+                    <select class="form-control" id="languageSelect" name="language">
+                        <option value="en">English</option>
+                        <option value="ru">Russian</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary"><fmt:message key="submit_button"/></button>
+            </fieldset>
+        </form>
         <form action="login" method="post">
             <fieldset>
                 <div class="form-group">
-                    <label for="login">Login:</label>
+                    <label for="login"><fmt:message key="login_label"></fmt:message> </label>
                     <input type="text" class="form-control" id="login" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password"><fmt:message key="password_label"/></label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary"><fmt:message key="login_button"/></button>
             </fieldset>
         </form>
     </div>

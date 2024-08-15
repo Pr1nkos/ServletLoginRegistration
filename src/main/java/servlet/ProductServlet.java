@@ -3,6 +3,7 @@ package servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,8 @@ import java.util.UUID;
 /**
  * The type Product servlet.
  */
-@WebServlet(urlPatterns = "/secure/products")
+@WebServlet(
+        urlPatterns = "/secure/products")
 public class ProductServlet extends HttpServlet {
     private ProductService productService;
 

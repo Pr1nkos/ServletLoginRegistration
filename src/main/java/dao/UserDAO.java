@@ -8,36 +8,19 @@ import model.User;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The type User dao.
  */
-@RequiredArgsConstructor
-public class UserDAO {
+public class UserDAO extends BaseDAO<User, UUID> {
 
-    private final ObjectMapper mapper;
-    private final File file;
-
-    /**
-     * Save.
-     *
-     * @param user the user
-     * @throws IOException the io exception
-     */
-    public void save(User user) throws IOException {
-        List<User> users = findAll();
-        users.add(user);
-        mapper.writeValue(file, users);
+    public UserDAO(ObjectMapper mapper, File file) {
+        super(mapper, file, new TypeReference<>() {});
     }
 
-    /**
-     * Find all list.
-     *
-     * @return the list
-     * @throws IOException the io exception
-     */
-    public List<User> findAll() throws IOException {
-        return mapper.readValue(file, new TypeReference<>() {
-        });
+    @Override
+    protected UUID getId(User user) {
+        return user.getId();
     }
 }
